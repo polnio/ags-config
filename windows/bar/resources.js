@@ -27,9 +27,30 @@ const ramUsage = Variable("0%", {
 	],
 });
 
-/* const cpuUsage = Variable("0%", {
-	listen: [`${App.configDir}/scripts/cpuusage`],
-}); */
+/* const cpuUsage = Variable("0%");
+let isCpuUsageRunning = false;
+setInterval(() => {
+	if (isCpuUsageRunning) {
+		return;
+	}
+	isCpuUsageRunning = true;
+	Utils.execAsync("LANG=C top -bn1 | grep Cpu")
+		.then((out) => {
+			cpuUsage.value = `${out.split(/ +/)[1]?.replace(",", ".") ?? "0"}%`;
+		})
+		.finally(() => {
+			isCpuUsageRunning = false;
+		});
+}, 2000); */
+
+const cpuUsage = Variable("0%", {
+	// listen: [`${App.configDir}/scripts/cpuusage`],
+	poll: [
+		2000,
+		["bash", "-c", "LANG=C top -bn1 | grep Cpu"],
+		(out) => `${out.split(/ +/)[1]?.replace(",", ".") ?? "0"}%`,
+	],
+});
 
 const temp = Variable("0°C", {
 	poll: [
@@ -109,8 +130,8 @@ const resourcesWidget = HoverGroup({
 		Block({
 			// icon: "",
 			iconPath: "cpu-symbolic",
-			// text: cpuUsage.bind(),
-			text: "0",
+			text: cpuUsage.bind(),
+			// text: "0",
 			collapsed: isHovered.bind().as((isHovered) => !isHovered),
 			iconCss: `background: ${colors.base0A}; color: ${colors.base00}`,
 		}),
