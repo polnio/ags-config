@@ -37,7 +37,7 @@ const barWindow = Widget.Window({
 				keyboardWidget,
 				networkWidget,
 				resourcesWidget,
-				// updatesWidget,
+				updatesWidget,
 				notificationsWidget,
 				quitWidget,
 				systrayWidget,
