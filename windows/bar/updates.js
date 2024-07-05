@@ -16,6 +16,7 @@ const updatesWidget = Widget.Box({
 					icon: "",
 					iconCss: `background: ${colors.base08}; color: ${colors.base00};`,
 					text: updates.toString(),
+					textCss: "min-width: 30px;",
 					marginRight: 20,
 				});
 			}
