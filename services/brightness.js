@@ -1,9 +1,11 @@
-// const device = Utils.exec("ls -w1 /sys/class/backlight | head -1");
-
-const maxValue = parseInt(Utils.exec("brightnessctl max"));
+const maxValue = parseInt(
+	Utils.exec('bash -c "cat /sys/class/backlight/*/max_brightness"'),
+);
 
 function getBrightness() {
-	const value = parseInt(Utils.exec("brightnessctl get"));
+	const value = parseInt(
+		Utils.exec('bash -c "cat /sys/class/backlight/*/brightness"'),
+	);
 	return (value / maxValue) * 100;
 }
 
