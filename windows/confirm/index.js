@@ -62,9 +62,7 @@ function ConfirmWidget(params) {
 							globalThis.confirmSubject.connect(
 								"changed",
 								({ value: confirmSubject }) => {
-									console.log(confirmSubject, params.subject);
 									if (confirmSubject === params.subject) {
-										// confirmWindow.set_focus(button);
 										button.grab_focus();
 									}
 								},

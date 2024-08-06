@@ -53,7 +53,6 @@ const applauncherWindow = Widget.Window({
 			self.visible = false;
 		});
 		self.keybind(["CONTROL"], "n", () => {
-			console.log("next");
 			self.vfunc_move_focus(Gtk.DirectionType.TAB_FORWARD);
 		});
 		self.keybind(["CONTROL"], "p", () => {

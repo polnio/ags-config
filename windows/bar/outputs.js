@@ -18,10 +18,6 @@ const BRIGHTNESS_ICONS = /** @type {const} */ ([
 
 const VOLUME_ICONS = /** @type {const} */ (["󰕿", "󰖀", "󰕾"]);
 
-brightness.connect("changed", ({ value: brightness }) => {
-	console.log("brightness", brightness);
-});
-
 const brightnessIcon = Utils.derive(
 	[brightness],
 	(brightness) =>
@@ -36,13 +32,6 @@ audio.speaker.connect("notify::is-muted", () => {
 const volumeIcon = Utils.derive([volume, is_muted], (volume, is_muted) =>
 	is_muted ? "󰝟" : VOLUME_ICONS[Math.floor(volume * VOLUME_ICONS.length)],
 );
-
-/* const volumeIcon = audio.bind("speaker").as(({ volume, stream }) => {
-	console.log(stream?.is_muted);
-	return stream?.is_muted
-		? "󰝟"
-		: VOLUME_ICONS[Math.floor(volume * VOLUME_ICONS.length)];
-}); */
 
 const outputsWidget = HoverGroup({
 	children: (isHovered) => [

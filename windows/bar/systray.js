@@ -19,7 +19,6 @@ const systrayWidget = HoverGroup({
 							iconPath: item.bind("icon"),
 							tooltipMarkup: item.bind("tooltip_markup"),
 							onClick: (_, event) => {
-								console.log(event);
 								item.activate(event);
 							},
 							onRightClick: (_, event) => item.openMenu(event),

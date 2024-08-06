@@ -8,7 +8,6 @@ const applicationsWidget = Widget.Box({
 		return clients
 			.filter((client) => client.pid !== -1)
 			.map((client, i, clients) => {
-				console.log(clients.length);
 				return Block({
 					iconCss: hyprland.active.client
 						.bind("address")
@@ -29,7 +28,6 @@ const applicationsWidget = Widget.Box({
 					// text: client.title,
 					tooltipMarkup: client.title,
 					onClick: () => {
-						console.log(client.pid);
 						hyprland.messageAsync(`dispatch focuswindow pid:${client.pid}`);
 					},
 				});
