@@ -72,7 +72,7 @@ function OsdTextWindow(params) {
 			}),
 			Widget.Label({
 				label: params.text,
-				css: `color: ${colors.base0D};`,
+				css: `color: ${colors.base0D}; font-size: 24px;`,
 			}),
 		],
 	});
@@ -113,7 +113,7 @@ let timeout;
 function showWindow(window) {
 	window.visible = true;
 	for (const w of App.windows) {
-		if (w.name !== null && w.name.endsWith("Osd") && w.name !== window.name) {
+		if (w.name?.endsWith("Osd") && w.name !== window.name) {
 			w.visible = false;
 		}
 	}
